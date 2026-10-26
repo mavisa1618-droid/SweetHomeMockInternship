@@ -36,7 +36,7 @@ import com.eteks.sweethome3d.model.UserPreferences;
 
 /**
  * A MVC controller for the furniture catalog.
- * @author Emmanuel Puybaret
+ * @author Emmanuel PuybaretN
  */
 public class FurnitureCatalogController implements Controller {
   private final FurnitureCatalog        catalog;

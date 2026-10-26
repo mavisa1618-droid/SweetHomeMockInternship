@@ -53,7 +53,7 @@ public class HomeFurnitureController implements Controller {
    * The properties that may be edited by the view associated to this controller. 
    */
   public enum Property {ICON, NAME, NAME_VISIBLE, DESCRIPTION, PRICE, X, Y, ELEVATION, ANGLE_IN_DEGREES, BASE_PLAN_ITEM, 
-      WIDTH, DEPTH,  HEIGHT, PROPORTIONAL, COLOR, PAINT, SHININESS, VISIBLE, MODEL_MIRRORED, LIGHT_POWER, 
+      WIDTH, DEPTH,  HEIGHT, VOLUME, PROPORTIONAL, COLOR, PAINT, SHININESS, VISIBLE, MODEL_MIRRORED, LIGHT_POWER,
       RESIZABLE, DEFORMABLE, TEXTURABLE}
   
   /**
@@ -239,9 +239,11 @@ public class HomeFurnitureController implements Controller {
       setY(null);
       setElevation(null);
       this.basePlanItemEnabled = false;
+
       setWidth(null, true, false);
       setDepth(null, true, false);
       setHeight(null, true, false);
+      // setVolume(null);
       setColor(null);
       if (textureController != null) {
         textureController.setTexture(null);
@@ -386,6 +388,7 @@ public class HomeFurnitureController implements Controller {
           break;
         }
       }
+
       setDepth(depth, true, false);
 
       Float height = firstPiece.getHeight();
@@ -396,7 +399,7 @@ public class HomeFurnitureController implements Controller {
         }
       }
       setHeight(height, true, false);
-
+      //
       List<HomePieceOfFurniture> selectedFurnitureWithoutGroups = getFurnitureWithoutGroups(selectedFurniture);
       HomePieceOfFurniture firstPieceExceptGroup = selectedFurnitureWithoutGroups.get(0);
       Integer color = firstPieceExceptGroup.getColor();
@@ -591,11 +594,10 @@ public class HomeFurnitureController implements Controller {
    * Returns <code>true</code> if the given <code>property</code> is editable.
    * Depending on whether a property is editable or not, the view associated to this controller
    * may render it differently.
-   * The implementation of this method always returns <code>true</code> except for <code>DESCRIPTION</code> and <code>PRICE</code> properties. 
+   * The implementation of this method always returns <code>true</code> except for <code>PRICE</code> properties.
    */
   public boolean isPropertyEditable(Property property) {
     switch (property) {
-      case DESCRIPTION :
       case PRICE :
         return false;
       case LIGHT_POWER :
@@ -954,7 +956,7 @@ public class HomeFurnitureController implements Controller {
   public Float getHeight() {
     return this.height;
   }
-  
+
   /**
    * Sets whether furniture proportions should be kept.
    */
